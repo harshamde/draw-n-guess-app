@@ -6,7 +6,6 @@ import logo from "../resources/draw&guessLogo.png";
 export default function GameBoard() {
 
     const sendDataToServer = (dataToSend) => {
-        // console.log(dataToSend);
     }
 
 
