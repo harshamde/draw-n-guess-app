@@ -1,0 +1,179 @@
+body {
+  font-family: 'Mali', cursive;
+  /* background-color: rgba(244, 243, 243, 0.62); */
+  /* background-color: #29bb53; */
+  background-color: #4662de;
+  /* background-color: #094d5cfc; */
+  /* background-color: #bdc6d0; */
+}
+
+.land-page {
+  height: 100vh;
+  width: 100vw;
+}
+
+.background-image {
+  width: 99vw;
+  height: 99vh;
+  position: absolute;
+  top: 0;
+  background-image: url('https://as2.ftcdn.net/v2/jpg/01/16/33/35/1000_F_116333525_J49YKLKGFaPd2tMGPBdgF2SNizXMyUn7.jpg');
+  opacity: 0.06;
+  background-size: cover;
+  z-index: 0;
+  --fa-beat-scale: 1.007;
+}
+
+.logo {
+  width: 390px;
+  height: 68px;
+  left: 0;
+  top: 0;
+  margin-left: -5px;
+  /* -webkit-filter: drop-shadow(0px 5px 5px #3c3b3b); */
+  filter: drop-shadow(0px 2px 3px #797878);
+}
+
+.land-page-body {
+  height: calc(100% - 160px);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card.land-page {
+  border: none;
+  width: 350px;
+  height: fit-content;
+  /* background-color: #d3dce692; */
+  background-color: rgb(253, 250, 250);
+  /* background-color: rgba(254, 255, 255, 0.412); */
+  /* background-color: rgb(205, 233, 255); */
+  box-shadow: 2px 2px 6px 2px #686868;
+  border-radius: 2px !important;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.width-50 {
+  width: 50%;
+}
+
+.line {
+  border-top: 1px solid #676765;
+}
+
+.line.how-to-play,
+.line.about {
+  width: 0%;
+  transition: width 0.6s;
+}
+
+.info-icon {
+  padding-left: 8px;
+  padding-right: 2px;
+  padding-top: 19px;
+  cursor: pointer;
+}
+
+.info-icon.cross {
+  padding-left: 8px;
+  padding-right: 2px;
+  margin-top: 21px;
+  cursor: pointer;
+}
+
+.info-icon:hover {
+  scale: 1.1;
+}
+
+.info-icon.cross:hover {
+  scale: 1.005;
+}
+
+.input-tag {
+  width: 100%;
+  outline: none;
+  box-shadow: 0px 1px 6px 0.5px #ccccc9;
+  border: 1px solid rgb(227, 224, 224);
+  border-radius: 3px;
+  /* background-color: white; */
+  font-size: 16px;
+  padding: 6px 10px;
+  background-color: #fafaf9;
+  /* background-color: #fafaf9; */
+  color: #0f0f10fc;
+  font-weight: 500;
+}
+
+.input-tag:focus {
+  scale: 1.02;
+  box-shadow: 0px 1px 6px 1px #a9a9a7;
+}
+
+.button-btn {
+  border: 1px solid #c1c1bf;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  height: 40px;
+  margin-top: 10px;
+  background-color: #f5f7f7;
+}
+
+.button-btn:hover {
+  outline: none;
+  scale: 1.01;
+  box-shadow: 0px 2px 8px -1px #acacab;
+  background-color: #fbfdfd;
+  font-weight: 600;
+}
+
+.button-btn:disabled {
+  box-shadow: none;
+  scale: 1;
+  font-weight: 400;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.button-btn:active {
+  scale: 0.95;
+}
+
+.button-btn:hover .line.how-to-play,
+.button-btn:hover .line.about {
+  width: 100%;
+}
+
+/* ==================================================== Game Board =================================================== */
+
+.board-body {
+  height: calc(100vh - 90px);
+}
+
+.board {
+  height: min(500px, calc(100% - 10px));
+  width: 70%;
+  background-color: white;
+  z-index: 5;
+  cursor: crosshair;
+}
+
+.chat-box {
+  height: min(500px, calc(100% - 10px));
+  width: 26%;
+  background-color: white;
+  z-index: 5;
+}
+
+.color-palate {
+  width: 60px;
+  height: 100%;
+  outline: 1px solid rgb(10, 10, 10);
+}
