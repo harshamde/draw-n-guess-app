@@ -1,5 +1,5 @@
 body {
-  font-family: 'Mali', cursive;
+  font-family: "Mali", cursive;
   background-color: #4662de;
 }
 
@@ -13,7 +13,7 @@ body {
   height: 99vh;
   position: absolute;
   top: 0;
-  background-image: url('https://as2.ftcdn.net/v2/jpg/01/16/33/35/1000_F_116333525_J49YKLKGFaPd2tMGPBdgF2SNizXMyUn7.jpg');
+  background-image: url("https://as2.ftcdn.net/v2/jpg/01/16/33/35/1000_F_116333525_J49YKLKGFaPd2tMGPBdgF2SNizXMyUn7.jpg");
   opacity: 0.06;
   background-size: cover;
   z-index: 0;
@@ -150,10 +150,17 @@ body {
 
 .board {
   height: min(500px, calc(100% - 10px));
-  width: 70%;
+  width: 70% !important;
   background-color: white;
   z-index: 5;
   cursor: crosshair;
+}
+
+.canvas {
+  display: flex;
+  justify-content: space-between;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .chat-box {
@@ -163,8 +170,121 @@ body {
   z-index: 5;
 }
 
-.color-palate {
-  width: 60px;
+.color-palette {
+  width: 55px;
   height: 100%;
-  outline: 1px solid rgb(10, 10, 10);
+  display: flex;
+  cursor: pointer;
+  flex-direction: column;
+  padding: 8px;
+  gap: 10px;
+  overflow-x: hidden;
+}
+
+.color-palette::-webkit-scrollbar {
+  width: 3px;
+}
+
+.color-palette::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.color-palette::-webkit-scrollbar-thumb {
+  background-color: #a0a0a1;
+  border-radius: 50px;
+  border: 1px solid transparent;
+
+  /* background-clip: content-box; */
+}
+
+.color-palette::-webkit-scrollbar-thumb:hover {
+  background-color: #a8bbbf;
+}
+
+.color-palette-item {
+  width: 38px;
+  height: 38px !important;
+  flex-basis: 38px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.color-palette-item:hover {
+  scale: 1.05;
+}
+
+.palette-item-child {
+  height: 100%;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.yellow {
+  background-color: rgb(255, 255, 58);
+}
+
+.red {
+  background-color: rgb(253, 54, 54);
+}
+
+.green {
+  background-color: rgb(7, 249, 7);
+}
+
+.blue {
+  background-color: rgb(54, 54, 253);
+}
+
+.sky-blue {
+  background-color: rgb(132, 228, 245);
+}
+
+.grey {
+  background-color: rgb(154, 152, 152);
+}
+
+.black {
+  background-color: black;
+}
+
+.line-width {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.line-width:hover{
+  scale: 1.05;
+}
+
+.width-20 {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.width-15 {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.width-10 {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.width-5 {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  background-color: black;
+  margin-bottom: 5px;
 }
