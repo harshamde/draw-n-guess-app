@@ -1,6 +1,6 @@
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import CanvasComponent from "../apis/canvasApi";
-import logo from "../resources/draw&guessLogo.png";
+import AppLayout from './appLayout';
 
 
 export default function GameBoard() {
@@ -15,13 +15,7 @@ export default function GameBoard() {
     // ====================================== RETURN ===========================================
 
     return (
-        <div className="land-page" >
-            <div className="background-image fa-beat" style={{ '--fa-beat-scale': '1.007' }}></div>
-            <img
-                className="logo mt-3"
-                src={logo}
-                alt={"Draw & Guess"}
-            />
+        <AppLayout>
             <div className="board-body d-flex p-4 px-5 justify-content-between " >
                 <div className="board d-flex" id='board'>
                     <CanvasComponent
@@ -31,6 +25,6 @@ export default function GameBoard() {
                 </div>
                 <div className="chat-box"></div>
             </div>
-        </div>
+        </AppLayout>
     );
 }

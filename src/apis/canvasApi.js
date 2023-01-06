@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState } from 'react';
-import { useEffect } from 'react';
 
 class CanvasComponent extends React.Component {
     constructor(props) {
@@ -158,6 +157,7 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
         // If is set means user has clicked once.
         // Set timer to null and change the canvas color.
         if (timer !== null) {
+            clearTimeout(timer);
             setTimer(null);
             onChangeCanvasColor(color);
         }
@@ -196,6 +196,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
                 <div
                     className='red palette-item-child'
                     data-color='rgb(253, 54, 54)'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="color"
                     onClick={onColorPaletteItemClick}
                 >
                 </div>
@@ -204,6 +207,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
                 <div
                     className='yellow palette-item-child'
                     data-color='rgb(255, 255, 58)'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="color"
                     onClick={onColorPaletteItemClick}
                 >
                 </div>
@@ -211,6 +217,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
             <div className='color-palette-item'>
                 <div className='green palette-item-child'
                     data-color='rgb(7, 249, 7)'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="color"
                     onClick={onColorPaletteItemClick}
                 >
                 </div>
@@ -219,6 +228,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
                 <div
                     className='blue palette-item-child'
                     data-color='rgb(54, 54, 253)'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="color"
                     onClick={onColorPaletteItemClick}
                 >
                 </div>
@@ -235,6 +247,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
                 <div
                     className='grey palette-item-child'
                     data-color='rgb(154, 152, 152)'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="color"
                     onClick={onColorPaletteItemClick}
                 >
                 </div>
@@ -242,6 +257,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
             <div className='color-palette-item'>
                 <div className='black palette-item-child'
                     data-color='black'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="color"
                     onClick={onColorPaletteItemClick}
                 >
                 </div>
@@ -249,6 +267,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
             <div className='line-width'>
                 <div className='width-20 line-width'
                     data-width='20'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="width"
                     onClick={onChangeLineWidthItemClick}
                 >
                 </div>
@@ -256,6 +277,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
             <div className='line-width'>
                 <div className='width-15 line-width'
                     data-width='14'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="width"
                     onClick={onChangeLineWidthItemClick}
                 >
                 </div>
@@ -263,6 +287,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
             <div className='line-width'>
                 <div className='width-10 line-width'
                     data-width='8'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="width"
                     onClick={onChangeLineWidthItemClick}
                 >
                 </div>
@@ -270,6 +297,9 @@ function ColorPaletteComponent({ onClearCanvas, onChangeLineColor, onChangeCanva
             <div className='line-width'>
                 <div className='width-5 line-width'
                     data-width='5'
+                    data-toggle="tooltip"
+                    data-placement="right"
+                    title="width"
                     onClick={onChangeLineWidthItemClick}
                 >
                 </div>
