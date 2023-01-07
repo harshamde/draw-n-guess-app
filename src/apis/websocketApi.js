@@ -1,6 +1,6 @@
 import { io } from "socket.io-client";
 import websocketEvents from "../common/websocketEvents";
-const { SOCKET_CONNECTION, SOCKET_CONNECTION_ERROR } = websocketEvents;
+const { SOCKET_CONNECTION, SOCKET_CONNECTION_ERROR, RECEIVE_DATA_FROM_SERVER } = websocketEvents;
 
 //===============================================================================================
 
@@ -8,8 +8,7 @@ class WebsocketApi {
     constructor() {
         this.socket = null;
         this.address = process.env.REACT_APP_BACKEND_URL;
-        this.onConnect = null;
-        this.onDisconnect = null;
+        this.connectedToServer = false;
         this.showLogs = Boolean(process.env.REACT_APP_IS_DEVELOPMENT);
     }
 
@@ -24,16 +23,18 @@ class WebsocketApi {
         return WebsocketApi._websocket;
     }
 
-    connect() {
-        if (this.socket === null) {
+    connect(receivedDataHandler) {
+        if (this.socket === null && !this.connectedToServer) {
             this.socket = io.connect(this.address);
-            this.socket.on(SOCKET_CONNECTION, this.onConnectionSuccess.bind(this));
+            this.socket.on(SOCKET_CONNECTION, this.onConnectionSuccess.bind(this, receivedDataHandler));
             this.socket.on(SOCKET_CONNECTION_ERROR, this.onConnectionFailure.bind(this));
         }
     }
 
-    onConnectionSuccess(response) {
-        this.showLogs && console.log(response);
+    onConnectionSuccess(receivedDataHandler, responseFromServer) {
+        this.connectedToServer = true;
+        this.showLogs && console.log(responseFromServer);
+        this.startReceivingDataFormServer(RECEIVE_DATA_FROM_SERVER, receivedDataHandler);
     }
 
     onConnectionFailure(error) {
@@ -87,6 +88,7 @@ class WebsocketApi {
             eventHandler(data);
             this.showLogs && console.log("Received data from server!");
         });
+
     }
 }
 

@@ -2,24 +2,17 @@ import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import AppLayout from "./appLayout";
 import info from "../resources/info.json"
-import WebsocketApi from './../apis/websocketApi';
-import luffyImage from '../resources/images/luffy-image.webp'
-import chopperImage from '../resources/images/chopper-image.webp'
-import ussopImage from '../resources/images/ussop-image.webp'
-import sanjiImage from '../resources/images/sanji-image.jpg'
-import brookImage from '../resources/images/brook-image.jpg'
+import { initializeConnection } from "../controllers/websocket";
+import arrayOfImagesForAvatar from "../common/imagesForAvatar";
 
 // ======================================================================================================
 
 export default function LandingPage() {
   const [showInfo, setShowInfo] = useState(false);
-  const [playerName, setPlayerName] = useState('');
+  const [playerName, setPlayerName] = useState('Luffy');
 
-  const initializeSocketConnection = () => {
-    WebsocketApi.getInstance().connect();
-  }
+  initializeConnection();
 
-  initializeSocketConnection();
 
   const onJoinRoom = () => {
     // socket.emit('join-room', { roomId: 1234, clientName: 'harsh' }, (res) => {
@@ -32,6 +25,7 @@ export default function LandingPage() {
   };
 
   const onCreateRoom = () => {
+    // createRoom({ roomId: 1234, clientName: 'harsh' });
     // socket.emit('create-room', { roomId: 1234, clientName: 'harsh' }, (res) => {
     //   console.log(res);
     // });
@@ -39,18 +33,15 @@ export default function LandingPage() {
 
   // ======================================= RETURN =======================================  
 
-
   return (
     <AppLayout>
       <div className='land-page-body'>
         <div className="card user-info-card p-4">
-          <InputTagAndInfoComponent setShowInfo={setShowInfo} setPlayerName={setPlayerName} />
-
+          <InputTagAndInfoComponent setShowInfo={setShowInfo} playerName={playerName} setPlayerName={setPlayerName} />
           <ButtonsComponent playerName={playerName} onJoinRoom={onJoinRoom} onCreateRoom={onCreateRoom} />
         </div>
 
         <AvatarComponent />
-
       </div>
 
       {/* ======================================= Info Modal ======================================= */}
@@ -70,13 +61,16 @@ export default function LandingPage() {
           </div>
         </div>
       </Modal>
+
+      {/* =============================================================================================== */}
+
     </AppLayout>
   );
 }
 
-//Helper functions
+//=================================== Helper functions =================================================
 
-function InputTagAndInfoComponent({ setShowInfo, setPlayerName }) {
+function InputTagAndInfoComponent({ setShowInfo, setPlayerName, playerName }) {
 
   const onPlayerNameChange = (event) => {
     setPlayerName(event.target.value);
@@ -84,7 +78,7 @@ function InputTagAndInfoComponent({ setShowInfo, setPlayerName }) {
 
   return (
     <div className="d-flex justify-content-between mb-2">
-      <input className="input-tag name" placeholder=" Enter your name" type='text' onChange={onPlayerNameChange} />
+      <input className="input-tag name" placeholder=" Enter your name" type='text' value={playerName} onChange={onPlayerNameChange} />
 
       <i className="fa-regular fa-xl fa-circle-question info-icon"
         style={{ color: '#021671' }}
@@ -93,8 +87,6 @@ function InputTagAndInfoComponent({ setShowInfo, setPlayerName }) {
     </div>
   );
 }
-
-
 
 
 function ButtonsComponent({ playerName, onJoinRoom, onCreateRoom }) {
@@ -124,20 +116,19 @@ function ButtonsComponent({ playerName, onJoinRoom, onCreateRoom }) {
 
 
 function AvatarComponent() {
-  const imagesArray = [luffyImage, chopperImage, sanjiImage, ussopImage, brookImage];
-  const [currentImageData, setCurrentImageData] = useState({ imageUrl: imagesArray[0], index: 0 });
+  const [currentImageData, setCurrentImageData] = useState({ imageUrl: arrayOfImagesForAvatar[0], index: 0 });
 
   const onLeftArrowClick = () => {
     setCurrentImageData(prevState => {
-      const newIndex = prevState.index === 0 ? imagesArray.length - 1 : prevState.index - 1;
-      return { ...prevState, index: newIndex, imageUrl: imagesArray[newIndex] };
+      const newIndex = prevState.index === 0 ? arrayOfImagesForAvatar.length - 1 : prevState.index - 1;
+      return { ...prevState, index: newIndex, imageUrl: arrayOfImagesForAvatar[newIndex] };
     });
   };
 
   const onRightArrowClick = () => {
     setCurrentImageData(prevState => {
-      const newIndex = prevState.index === imagesArray.length - 1 ? 0 : prevState.index + 1;
-      return { ...prevState, index: newIndex, imageUrl: imagesArray[newIndex] };
+      const newIndex = prevState.index === arrayOfImagesForAvatar.length - 1 ? 0 : prevState.index + 1;
+      return { ...prevState, index: newIndex, imageUrl: arrayOfImagesForAvatar[newIndex] };
     });
   };
 
